@@ -1,13 +1,11 @@
 package work.lince.kvs.service
 
+import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll
 import work.lince.kvs.model.Resource
 
-/**
- * @author pzatta
- */
-
+@Ignore
 class ResourceServiceSpec extends Specification {
 
     ResourceService service;
