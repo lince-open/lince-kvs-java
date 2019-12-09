@@ -36,7 +36,7 @@ class ResourceFunctionalSpec extends Specification {
             projectRepository.save(new Resource(title: title))
 
         when:
-            def result = client.get(path: "projects")
+            def result = client.get(path: "resources")
 
         then:
             result != null
