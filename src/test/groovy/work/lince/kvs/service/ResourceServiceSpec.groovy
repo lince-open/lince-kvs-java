@@ -4,6 +4,7 @@ import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll
 import work.lince.kvs.model.Resource
+import work.lince.kvs.repository.ResourceRepository
 
 @Ignore
 class ResourceServiceSpec extends Specification {
@@ -12,7 +13,7 @@ class ResourceServiceSpec extends Specification {
 
     def setup() {
         service = Spy(ResourceService)
-        service.repository = Mock(ProjectRepository)
+        service.repository = Mock(ResourceRepository)
         service.authenticationService = Mock(AuthenticationService)
 
     }

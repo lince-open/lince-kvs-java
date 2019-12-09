@@ -13,15 +13,15 @@ Solução
 
 ## Docker Hub
 
-https://hub.docker.com/repository/docker/linceopen/lince-resource
+https://hub.docker.com/repository/docker/linceopen/lince-kvs
 
 mvn clean package dockerfile:build
 
-docker run  --name lince-resource -p 8080:8080 -t lince-open/lince-resource:latest
+docker run  --name lince-kvs -p 8080:8080 -t lince-open/lince-kvs:latest
 
-docker tag lince-open/lince-resource:latest linceopen/lince-resource:latest
+docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:latest
 
-docker push linceopen/lince-resource:latest
+docker push linceopen/lince-kvs:latest
 
 ## Execução
 mvn spring-boot:run
