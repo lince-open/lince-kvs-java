@@ -26,7 +26,7 @@ class HealthFunctionalSpec extends Specification {
     }
 
     @Unroll
-    def "get Success"() {
+    def "get Success #user"() {
 
         when:
             def result = client.get(path: "health", headers: ["lince.user.name": user])
@@ -38,9 +38,10 @@ class HealthFunctionalSpec extends Specification {
             result.data.user == expectedUser
 
         where:
-            user  | expectedUser
-            null  | "anonymous"
-            "zzz" | "zzz"
+            user       | expectedUser
+            null       | "anonymous"
+            "zzz"      | "zzz"
+            "asdf1234" | "asdf1234"
 
     }
 

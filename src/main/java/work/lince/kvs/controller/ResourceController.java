@@ -20,12 +20,6 @@ public class ResourceController {
     @Autowired
     protected ResourceService service;
 
-//    @GetMapping(path = "/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public Resource findById(@PathVariable("id") final String id) {
-//        return service.findById(id);
-//    }
-
     @PutMapping(path = "/{resourceName}/{resourceId}")
     public ResponseEntity<String> update(@RequestHeader(value = "ttl", required = false) Optional<Long> ttl,
                                          @PathVariable("resourceName") final String resourceName,
@@ -34,6 +28,18 @@ public class ResourceController {
         Resource resource = service.update(ttl.orElse(0L), resourceName, resourceId, value);
         return ResponseEntity
                 .ok()
+                .header("uuid", resource.getId())
+                .body(resource.getValue());
+    }
+
+    @PostMapping(path = "/{resourceName}/{resourceId}")
+    public ResponseEntity<String> create(@RequestHeader(value = "ttl", required = false) Optional<Long> ttl,
+                                         @PathVariable("resourceName") final String resourceName,
+                                         @PathVariable("resourceId") final String resourceId,
+                                         @RequestBody String value) {
+        Resource resource = service.update(ttl.orElse(0L), resourceName, resourceId, value);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
                 .header("uuid", resource.getId())
                 .body(resource.getValue());
     }

@@ -2,17 +2,16 @@ package work.lince.kvs
 
 import groovyx.net.http.ContentType
 import groovyx.net.http.RESTClient
+import org.apache.http.HttpStatus
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
-import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
 import work.lince.kvs.model.Resource
 import work.lince.kvs.repository.ResourceRepository
 
-@Ignore
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ResourceFunctionalSpec extends Specification {
 
@@ -23,7 +22,7 @@ class ResourceFunctionalSpec extends Specification {
     int port;
 
     @Autowired
-    ResourceRepository projectRepository
+    ResourceRepository resourceRepository
 
     def setup() {
         client = new RESTClient("http://localhost:${port}/")
@@ -31,51 +30,85 @@ class ResourceFunctionalSpec extends Specification {
     }
 
     @Unroll
-    def "get Success"() {
+    def "get with success #id"() {
         given:
-            projectRepository.save(new Resource(title: title))
+            resourceRepository.save(
+                new Resource(id: id, name: resourceName, key: resourceId, ttl: ttl, value: "{\"id\": \"${resourceId}\", \"name\": \"${name}\"}")
+            )
 
         when:
-            def result = client.get(path: "resources")
+            def result = client.get(path: "resources/${resourceName}/${resourceId}")
 
         then:
             result != null
-
+            result.status == 200
+            result.data.id == resourceId
+            result.data.name == name
 
         where:
-            title            | _
-            "Projet Title 1" | _
-
+            id          | resourceName | resourceId | ttl  | name
+            "uuid-0123" | "cache1"     | "a12"      | 120L | "name 1"
+            "uuid-1234" | "cache1"     | "a13"      | 0    | "name 2"
+            "uuid-2345" | "cache2"     | "a12"      | 120L | "name 3"
+            "uuid-3456" | "cache2"     | "a13"      | 120L | "name 4"
+            "uuid-4567" | "cache3"     | "a12"      | 120L | "name 5"
 
     }
 
 
     @Unroll
-    def "Create Projetc #title"() {
+    def "put with success #resourceName/#resurlceId"() {
         given:
             def body = [
-                title: title,
-                status : status
+                id  : resourceId,
+                name: name
             ]
 
-
         when:
-            def result = client.post(path: "projects", body: body, headers: ["lince.user.name": userName])
+            def result = client.put(path: "resources/${resourceName}/${resourceId}", body: body, headers: ["lince.user.name": userName])
 
         then:
             result != null
-            result.data.id != null
-            result.data.title == title
-            result.data.status == ProjectStatus.CREATED.toString()
-            result.data.owner == expectedOwner
+            result.status == HttpStatus.SC_OK
+            result.data.id == resourceId
+            result.data.name == name
 
         where:
-            title             | userName   | status                || expectedOwner
-            "Project Title 1" | null       | null                  || 'anonymous'
-            "Project Title 2" | 'x1324'    | ProjectStatus.CREATED || 'x1324'
-            "Project Title 3" | 'zxcvasdf' | ProjectStatus.CLOSED  || 'zxcvasdf'
+            id          | resourceName | resourceId | ttl  | name     | userName
+            "uuid-0123" | "cache1"     | "a12"      | 120L | "name 1" | null
+            "uuid-1234" | "cache1"     | "a13"      | 0    | "name 2" | "asdf1234"
+            "uuid-2345" | "cache2"     | "a12"      | 120L | "name 3" | "asdf1234"
+            "uuid-3456" | "cache2"     | "a13"      | 120L | "name 4" | "asdf1234"
+            "uuid-4567" | "cache3"     | "a12"      | 120L | "name 5" | "asdf1234"
 
 
     }
 
+    @Unroll
+    def "post with success #resourceName/#resurlceId"() {
+        given:
+            def body = [
+                id  : resourceId,
+                name: name
+            ]
+
+        when:
+            def result = client.post(path: "resources/${resourceName}/${resourceId}", body: body, headers: ["lince.user.name": userName])
+
+        then:
+            result != null
+            result.status == HttpStatus.SC_CREATED
+            result.data.id == resourceId
+            result.data.name == name
+
+        where:
+            id          | resourceName | resourceId | ttl  | name     | userName
+            "uuid-0123" | "cache1"     | "a12"      | 120L | "name 1" | "asdf1234"
+            "uuid-1234" | "cache1"     | "a13"      | 0    | "name 2" | "asdf1234"
+            "uuid-2345" | "cache2"     | "a12"      | 120L | "name 3" | "asdf1234"
+            "uuid-3456" | "cache2"     | "a13"      | 120L | "name 4" | "asdf1234"
+            "uuid-4567" | "cache3"     | "a12"      | 120L | "name 5" | "asdf1234"
+
+
+    }
 }
