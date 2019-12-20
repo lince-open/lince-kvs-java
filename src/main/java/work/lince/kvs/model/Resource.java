@@ -8,7 +8,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import work.lince.commons.persistence.model.LastChangeDetail;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
