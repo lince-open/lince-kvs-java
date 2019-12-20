@@ -9,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import work.lince.kvs.model.Resource;
+import work.lince.kvs.service.JsonWrapperService;
 import work.lince.kvs.service.ResourceService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -23,7 +25,7 @@ public class ResourceController {
     protected ResourceService service;
 
     @Autowired
-    protected ObjectMapper objectMapper;
+    protected JsonWrapperService json;
 
     @PutMapping(path = "/{resourceName}/{resourceId}")
     public ResponseEntity<String> update(@RequestHeader(value = "ttl", required = false) Optional<Long> ttl,
@@ -62,8 +64,10 @@ public class ResourceController {
 
     @GetMapping(path = "/{resourceName}")
     @ResponseStatus(HttpStatus.OK)
-    public List<String> findByName(@PathVariable("resourceName") final String resourceName) {
-                return service.findByName(resourceName).stream().map(Resource::getValue).collect(Collectors.toList());
+    public List<Map> findByName(@PathVariable("resourceName") final String resourceName) {
+        return service.findByName(resourceName).stream().map(resource ->
+                json.fromJson(resource.getValue())
+        ).collect(Collectors.toList());
     }
 
     @DeleteMapping(path = "/{resourceName}/{resourceId}")
