@@ -1,5 +1,6 @@
 package work.lince.kvs.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import work.lince.kvs.service.ResourceService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/resources", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -19,6 +21,9 @@ public class ResourceController {
 
     @Autowired
     protected ResourceService service;
+
+    @Autowired
+    protected ObjectMapper objectMapper;
 
     @PutMapping(path = "/{resourceName}/{resourceId}")
     public ResponseEntity<String> update(@RequestHeader(value = "ttl", required = false) Optional<Long> ttl,
@@ -57,8 +62,8 @@ public class ResourceController {
 
     @GetMapping(path = "/{resourceName}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Resource> findByName(@PathVariable("resourceName") final String resourceName) {
-        return service.findByName(resourceName);
+    public List<String> findByName(@PathVariable("resourceName") final String resourceName) {
+                return service.findByName(resourceName).stream().map(Resource::getValue).collect(Collectors.toList());
     }
 
     @DeleteMapping(path = "/{resourceName}/{resourceId}")
