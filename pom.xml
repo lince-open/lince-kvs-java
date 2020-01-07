@@ -21,7 +21,6 @@
         <sonar.projectKey>lince-open_lince-kvs-java</sonar.projectKey>
         <sonar.organization>lince-open</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.login>e19c468377427c89daa0a305a74e96055433fa4e</sonar.login>
     </properties>
 
     <dependencies>
@@ -38,6 +37,36 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>work.lince</groupId>
+            <artifactId>lince-commons-swagger</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>work.lince</groupId>
+            <artifactId>lince-commons-authentication</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>work.lince</groupId>
+            <artifactId>lince-commons-health</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>work.lince</groupId>
+            <artifactId>lince-commons-exception</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>work.lince</groupId>
+            <artifactId>lince-commons-persistence</artifactId>
+            <version>0.0.1</version>
         </dependency>
 
         <dependency>
@@ -59,18 +88,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
         </dependency>
 
         <dependency>
