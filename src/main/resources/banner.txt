@@ -3,4 +3,4 @@
 |  |__| |   |  _| -_|  |  | . | -_|   |
 |_____|_|_|_|___|___|_____|  _|___|_|_|
                           |_|          
-lince-open.lince-resource
+lince-open.lince-kvs
