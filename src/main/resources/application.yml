@@ -1,10 +1,20 @@
 server:
-  port: ${LINCE_KVS_PORT:8080}
+  port: ${d:8080}
 
 spring:
   jackson:
     default-property-inclusion: non_null
 
   datasource:
-    url: ${LINCE_KVS_DATASOURCE_URL:jdbc:h2:mem:example}
+    url: ${LINCE_KVS_DATASOURCE_URL:jdbc:h2:file:~\.h2\lince-kvs}
     platform: ${LINCE_KVS_DATASOURCE_PLATFORM:h2}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+lince:
+  commons:
+    health:
+      serviceGroup: @project.groupId@
+      serviceName: @project.artifactId@
+      serviceVersion: @project.version@
