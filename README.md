@@ -29,6 +29,10 @@ docker run --name lince-kvs \
 -p 50001:8080 \
 -t lince-open/lince-kvs:latest
 
+docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:0.0.3
+
+docker push linceopen/lince-kvs:0.0.3
+
 
 docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:latest
 
