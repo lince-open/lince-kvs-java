@@ -11,6 +11,12 @@ Solução
 * Swagger2
 * Docker
 
+![](https://github.com/lince-open/lince-kvs-java/workflows/Java%20CI/badge.svg)
+[![Known Vulnerabilities](https://snyk.io/test/github/lince-open/lince-kvs-java/badge.svg)](https://snyk.io/test/github/pedrozatta/lince-kvs-java)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=lince-open_lince-kvs-java&metric=coverage)](https://sonarcloud.io/dashboard?id=lince-open_lince-kvs-java)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=lince-open_lince-kvs-java&metric=alert_status)](https://sonarcloud.io/dashboard?id=lince-open_lince-kvs-java)
+
+
 ## Docker Hub
 
 https://hub.docker.com/repository/docker/linceopen/lince-kvs

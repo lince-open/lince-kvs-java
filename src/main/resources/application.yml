@@ -8,3 +8,10 @@ spring:
   datasource:
     url: ${LINCE_KVS_DATASOURCE_URL:jdbc:h2:mem:example}
     platform: ${LINCE_KVS_DATASOURCE_PLATFORM:h2}
+
+lince:
+  commons:
+    health:
+      serviceGroup: @project.groupId@
+      serviceName: @project.artifactId@
+      serviceVersion: @project.version@

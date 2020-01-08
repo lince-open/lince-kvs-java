@@ -54,7 +54,7 @@
         <dependency>
             <groupId>work.lince</groupId>
             <artifactId>lince-commons-health</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </dependency>
 
         <dependency>
