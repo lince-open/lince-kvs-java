@@ -40,6 +40,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>work.lince</groupId>
             <artifactId>lince-commons-swagger</artifactId>
             <version>0.0.1</version>
@@ -67,6 +72,18 @@
             <groupId>work.lince</groupId>
             <artifactId>lince-commons-persistence</artifactId>
             <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>work.lince</groupId>
+            <artifactId>lince-commons-rest-provider</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>work.lince</groupId>
+            <artifactId>lince-commons-log</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>

@@ -1,5 +1,5 @@
 server:
-  port: ${d:8080}
+  port: ${LINCE_KVS_PORT:8080}
 
 spring:
   jackson:
@@ -12,9 +12,33 @@ spring:
     hibernate:
       ddl-auto: update
 
-lince:
-  commons:
-    health:
-      serviceGroup: @project.groupId@
-      serviceName: @project.artifactId@
-      serviceVersion: @project.version@
+management:
+
+  endpoints:
+    web:
+      base-path: /internal
+      exposure:
+        include: "*"
+  info:
+    git:
+      mode: full
+
+info:
+  app:
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@
+
+  lince:
+    hostname: ${HOSTNAME:lince-kvs-host}
+    commons:
+      health:
+        serviceGroup: @project.groupId@
+        serviceName: @project.artifactId@
+        serviceVersion: @project.version@
+
+logging:
+  level:
+    work:
+      lince: WARN
