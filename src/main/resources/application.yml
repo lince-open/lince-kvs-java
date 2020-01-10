@@ -26,17 +26,14 @@ management:
 info:
   app:
     encoding: @project.build.sourceEncoding@
+    hostname: ${HOSTNAME:lince-kvs-host}
     java:
       source: @java.version@
       target: @java.version@
-
-  lince:
-    hostname: ${HOSTNAME:lince-kvs-host}
-    commons:
-      health:
-        serviceGroup: @project.groupId@
-        serviceName: @project.artifactId@
-        serviceVersion: @project.version@
+    maven:
+      serviceGroup: @project.groupId@
+      serviceName: @project.artifactId@
+      serviceVersion: @project.version@
 
 logging:
   level:
