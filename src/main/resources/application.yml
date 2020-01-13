@@ -15,8 +15,7 @@ spring:
   datasource:
     url: ${LINCE_KVS_DATASOURCE_URL:jdbc:h2:file:~\.h2\lince-kvs}
     platform: ${LINCE_KVS_DATASOURCE_PLATFORM:h2}
-    hikari:
-      register-mbeans: true
+
   jpa:
     hibernate:
       ddl-auto: update
