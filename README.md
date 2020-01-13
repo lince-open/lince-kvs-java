@@ -26,12 +26,14 @@ mvn clean package dockerfile:build
 docker run --name lince-kvs \
 -e LINCE_KVS_PORT='8080' \
 -e LINCE_KVS_DATASOURCE_URL='jdbc:h2:file:~/lince-kvs' \
+-e LINCE_JAVA_OPT='-Xms64m -Xmx128m' \
 -p 50001:8080 \
 -t lince-open/lince-kvs:latest
 
-docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:0.0.3
 
-docker push linceopen/lince-kvs:0.0.3
+docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:0.0.4
+
+docker push linceopen/lince-kvs:0.0.4
 
 
 docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:latest

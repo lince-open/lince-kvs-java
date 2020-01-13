@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import work.lince.commons.log.LogExecutionTime;
 import work.lince.kvs.component.JsonWrapper;
 import work.lince.kvs.model.Resource;
 import work.lince.kvs.service.ResourceService;
@@ -23,6 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@LogExecutionTime
 @RestController
 @RequestMapping(path = "/resources", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ResourceController {
