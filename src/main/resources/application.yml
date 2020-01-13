@@ -2,38 +2,25 @@ server:
   port: ${LINCE_KVS_PORT:8080}
 
 spring:
+  application:
+    name: @project.artifactId@
+
+  profiles:
+    include: management
+
   jackson:
     default-property-inclusion: non_null
+    time-zone: America/Sao_Paulo
 
   datasource:
     url: ${LINCE_KVS_DATASOURCE_URL:jdbc:h2:file:~\.h2\lince-kvs}
     platform: ${LINCE_KVS_DATASOURCE_PLATFORM:h2}
+    hikari:
+      register-mbeans: true
   jpa:
     hibernate:
       ddl-auto: update
 
-management:
-
-  endpoints:
-    web:
-      base-path: /internal
-      exposure:
-        include: "*"
-  info:
-    git:
-      mode: full
-
-info:
-  app:
-    encoding: @project.build.sourceEncoding@
-    hostname: ${HOSTNAME:lince-kvs-host}
-    java:
-      source: @java.version@
-      target: @java.version@
-    maven:
-      serviceGroup: @project.groupId@
-      serviceName: @project.artifactId@
-      serviceVersion: @project.version@
 
 logging:
   level:

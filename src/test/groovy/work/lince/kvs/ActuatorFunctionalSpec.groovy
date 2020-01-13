@@ -12,7 +12,7 @@ import work.lince.kvs.model.Resource
 import work.lince.kvs.repository.ResourceRepository
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class HealthFunctionalSpec extends Specification {
+class ActuatorFunctionalSpec extends Specification {
 
     @Shared
     RESTClient client
@@ -21,20 +21,40 @@ class HealthFunctionalSpec extends Specification {
     int port;
 
     def setup() {
-        client = new RESTClient("http://localhost:${port}/")
+        client = new RESTClient("http://localhost:${port}/internal")
         client.contentType = ContentType.JSON
     }
 
     @Unroll
-    def "get Success #user"() {
+    def "health Success user: #user"() {
 
         when:
-            def result = client.get(path: "health", headers: ["lince.user.name": user])
+            def result = client.get(path: "internal/health", headers: ["lince.user.name": user])
 
         then:
             result != null
-            result.data.status == "ok"
+            result.data.status == "UP"
+
+
+        where:
+            user       | expectedUser
+            null       | "anonymous"
+            "zzz"      | "zzz"
+            "asdf1234" | "asdf1234"
+
+    }
+
+    @Unroll
+    def "info Success user: #user"() {
+
+        when:
+            def result = client.get(path: "internal/info", headers: ["lince.user.name": user])
+
+        then:
+            result != null
+            result.data.hostName == "lince-test-host"
             result.data.now != null
+            result.data.startupDate != null
             result.data.user == expectedUser
 
         where:
@@ -44,5 +64,6 @@ class HealthFunctionalSpec extends Specification {
             "asdf1234" | "asdf1234"
 
     }
+
 
 }
