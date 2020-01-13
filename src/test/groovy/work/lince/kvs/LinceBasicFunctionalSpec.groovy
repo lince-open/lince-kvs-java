@@ -12,7 +12,7 @@ import work.lince.kvs.model.Resource
 import work.lince.kvs.repository.ResourceRepository
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ActuatorFunctionalSpec extends Specification {
+class LinceBasicFunctionalSpec extends Specification {
 
     @Shared
     RESTClient client
@@ -52,16 +52,18 @@ class ActuatorFunctionalSpec extends Specification {
 
         then:
             result != null
-            result.data.hostName == "lince-test-host"
+            result.data.hostName == expectedHost
             result.data.now != null
             result.data.startupDate != null
             result.data.user == expectedUser
 
+            result.headers.'host-name' == expectedHost
+
         where:
-            user       | expectedUser
-            null       | "anonymous"
-            "zzz"      | "zzz"
-            "asdf1234" | "asdf1234"
+            user       || expectedUser | expectedHost
+            null       || "anonymous"  | 'lince-test-host'
+            "zzz"      || "zzz"        | 'lince-test-host'
+            "asdf1234" || "asdf1234"   | 'lince-test-host'
 
     }
 
