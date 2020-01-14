@@ -60,7 +60,6 @@ public class ResourceService {
                 .orElseThrow(() -> new NotFoundException());
     }
 
-
     public List<Resource> findByName(String name) {
         return repository.findByName(name);
     }

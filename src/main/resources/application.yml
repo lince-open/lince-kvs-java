@@ -13,7 +13,7 @@ spring:
     time-zone: America/Sao_Paulo
 
   datasource:
-    url: ${LINCE_KVS_DATASOURCE_URL:jdbc:h2:file:~\.h2\lince-kvs}
+    url: ${LINCE_KVS_DATASOURCE_URL:jdbc:h2:mem:lince-db}
     platform: ${LINCE_KVS_DATASOURCE_PLATFORM:h2}
 
   jpa:
