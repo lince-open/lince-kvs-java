@@ -1,5 +1,6 @@
 package work.lince.kvs.controller;
 
+import io.micrometer.core.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,7 +25,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@LogExecutionTime
 @RestController
 @RequestMapping(path = "/resources", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ResourceController {
@@ -35,6 +35,7 @@ public class ResourceController {
     @Autowired
     protected JsonWrapper json;
 
+    @Timed("lince.resource.update")
     @PutMapping(path = "/{resourceName}/{resourceId}")
     public ResponseEntity<String> update(@RequestHeader(value = "ttl", required = false) Optional<Long> ttl,
                                          @PathVariable("resourceName") final String resourceName,
@@ -47,6 +48,7 @@ public class ResourceController {
                 .body(resource.getValue());
     }
 
+    @Timed("lince.resource.create")
     @PostMapping(path = "/{resourceName}/{resourceId}")
     public ResponseEntity<String> create(@RequestHeader(value = "ttl", required = false) Optional<Long> ttl,
                                          @PathVariable("resourceName") final String resourceName,
@@ -59,6 +61,7 @@ public class ResourceController {
                 .body(resource.getValue());
     }
 
+    @Timed("lince.resource.find-by-id")
     @GetMapping(path = "/{resourceName}/{resourceId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> findByNameAndId(@PathVariable("resourceName") final String resourceName,
@@ -70,6 +73,7 @@ public class ResourceController {
                 .body(resource.getValue());
     }
 
+    @Timed("lince.resource.find-all")
     @GetMapping(path = "/{resourceName}")
     @ResponseStatus(HttpStatus.OK)
     public List<Map> findByName(@PathVariable("resourceName") final String resourceName) {
@@ -78,6 +82,8 @@ public class ResourceController {
         ).collect(Collectors.toList());
     }
 
+
+    @Timed("lince.resource.remove-by-id")
     @DeleteMapping(path = "/{resourceName}/{resourceId}")
     @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable("resourceName") final String resourceName,
@@ -85,6 +91,7 @@ public class ResourceController {
         service.remove(resourceName, resourceId);
     }
 
+    @Timed("lince.resource.remove-all")
     @DeleteMapping(path = "/{resourceName}")
     @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable("resourceName") final String resourceName) {
