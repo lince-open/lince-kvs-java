@@ -24,12 +24,14 @@ https://hub.docker.com/repository/docker/linceopen/lince-kvs
 mvn clean package dockerfile:build
 
 docker run --name lince-kvs \
+--network lincenetwork \
 -e LINCE_KVS_PORT='8080' \
 -e LINCE_KVS_DATASOURCE_URL='jdbc:h2:file:~/lince-kvs' \
--e LINCE_JAVA_OPT='-Xms64m -Xmx128m' \
+-e LINCE_KVS_DATASOURCE_USER='lincekvs' \
+-e LINCE_KVS_DATASOURCE_PASS='lincepass' \
+-e LINCE_LOG_LEVEL='WARN'
 -p 50001:8080 \
 -t lince-open/lince-kvs:latest
-
 
 docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:0.0.5
 
@@ -52,7 +54,7 @@ docker run --name lince-kvs \
 -e LINCE_KVS_DATASOURCE_URL='jdbc:mysql://lincemysql:3306/lincekvs' \
 -e LINCE_KVS_DATASOURCE_USER='lincekvs' \
 -e LINCE_KVS_DATASOURCE_PASS='lincepass' \
--e LINCE_JAVA_OPT='-Xms64m -Xmx128m' \
+-e LINCE_LOG_LEVEL='WARN'
 -p 50001:8080 \
 -t lince-open/lince-kvs:latest
 

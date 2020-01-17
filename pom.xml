@@ -225,7 +225,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <jvmArguments>-Xms256M -Xmx256M</jvmArguments>
+                    <jvmArguments>-Xms256M -Xmx256M -XX:+ExitOnOutOfMemoryError -XX:+CrashOnOutOfMemoryError</jvmArguments>
                 </configuration>
                 <executions>
                     <execution>
