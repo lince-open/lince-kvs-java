@@ -14,14 +14,17 @@ spring:
 
   datasource:
     url: ${LINCE_KVS_DATASOURCE_URL:jdbc:h2:mem:lince-db}
-    platform: ${LINCE_KVS_DATASOURCE_PLATFORM:h2}
+    username: ${LINCE_KVS_DATASOURCE_USER:linceuser}
+    password: ${LINCE_KVS_DATASOURCE_PASS:lincepass}
 
   jpa:
     hibernate:
       ddl-auto: update
-
+    properties:
+      hibernate:
+        dialect: ${LINCE_KVS_DATASOURCE_DIALECT:}
 
 logging:
   level:
     work:
-      lince: WARN
+      lince: ${LINCE_LOG_LEVEL:INFO}
