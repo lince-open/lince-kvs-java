@@ -27,7 +27,6 @@ docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:0.0.6
 
 docker push linceopen/lince-kvs:0.0.6
 
-
 docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:latest
 
 docker push linceopen/lince-kvs:latest
@@ -35,7 +34,6 @@ docker push linceopen/lince-kvs:latest
 ###H2
 
 docker run --name lince-kvs \
---network lincenetwork \
 -e LINCE_KVS_PORT='8080' \
 -e LINCE_KVS_DATASOURCE_URL='jdbc:h2:file:~/lince-kvs' \
 -e LINCE_KVS_DATASOURCE_USER='lincekvs' \
