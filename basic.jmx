@@ -12,7 +12,7 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables (DEV)" enabled="true">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables (DEV)" enabled="false">
         <collectionProp name="Arguments.arguments">
           <elementProp name="SERVICE_HOST" elementType="Argument">
             <stringProp name="Argument.name">SERVICE_HOST</stringProp>
@@ -27,7 +27,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables (DOCKER)" enabled="false">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables (DOCKER)" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="SERVICE_HOST" elementType="Argument">
             <stringProp name="Argument.name">SERVICE_HOST</stringProp>
