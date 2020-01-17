@@ -40,6 +40,30 @@ docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:latest
 
 docker push linceopen/lince-kvs:latest
 
+###Mysql
+
+docker network create --driver bridge lincenetwork
+ 
+docker run --name lincemysql --network lincenetwork --hostname lincemysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=lince -d mysql:latest
+
+docker run --name lince-kvs \
+--network lincenetwork \
+-e LINCE_KVS_PORT='8080' \
+-e LINCE_KVS_DATASOURCE_URL='jdbc:mysql://lincemysql:3306/lincekvs' \
+-e LINCE_KVS_DATASOURCE_USER='lincekvs' \
+-e LINCE_KVS_DATASOURCE_PASS='lincepass' \
+-e LINCE_JAVA_OPT='-Xms64m -Xmx128m' \
+-p 50001:8080 \
+-t lince-open/lince-kvs:latest
+
+
+####Script
+docker exec -it lincemysql mysql -u root -p
+ 
+CREATE USER 'lincekvs'@'%' IDENTIFIED BY 'lincepass';
+CREATE DATABASE lincekvs;
+GRANT ALL PRIVILEGES ON lincekvs.* TO 'lincekvs'@'%';
+
 ## Execução
 mvn spring-boot:run
 

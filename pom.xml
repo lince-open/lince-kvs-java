@@ -94,6 +94,13 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -218,7 +225,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <jvmArguments>-Xms256M -Xmx256M -XX:PermSize=64m -XX:MaxPermSize=128m</jvmArguments>
+                    <jvmArguments>-Xms256M -Xmx256M</jvmArguments>
                 </configuration>
                 <executions>
                     <execution>

@@ -13,13 +13,16 @@ spring:
     time-zone: America/Sao_Paulo
 
   datasource:
-    url: ${LINCE_KVS_DATASOURCE_URL:jdbc:h2:mem:lince-db}
-    platform: ${LINCE_KVS_DATASOURCE_PLATFORM:h2}
+    url: ${LINCE_KVS_DATASOURCE_URL:jdbc:mysql://lincemysql:3306/lincekvs}
+    username: ${LINCE_KVS_DATASOURCE_USER:lincekvs}
+    password: ${LINCE_KVS_DATASOURCE_PASS:lincepass}
 
   jpa:
     hibernate:
       ddl-auto: update
-
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 logging:
   level:

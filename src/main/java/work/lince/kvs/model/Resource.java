@@ -18,7 +18,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "TB_RESOURCE", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "key"})
+@Table(name = "TB_RESOURCE", uniqueConstraints = @UniqueConstraint(columnNames = {"NAME", "EXTERNAL_ID"})
         , indexes = {})
 @Getter
 @Setter
@@ -41,7 +41,7 @@ public class Resource {
     private String name;
 
     @NotNull
-    @Column(name = "KEY", length = 50)
+    @Column(name = "EXTERNAL_ID", length = 50)
     private String key;
 
     @Lob
