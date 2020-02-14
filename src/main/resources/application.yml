@@ -1,5 +1,5 @@
 server:
-  port: ${LINCE_KVS_PORT:8080}
+  port: ${PORT:8080}
 
 spring:
   application:
