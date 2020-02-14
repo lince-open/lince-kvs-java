@@ -31,6 +31,10 @@ docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:latest
 
 docker push linceopen/lince-kvs:latest
 
+###GCLOUD
+docker tag lince-open/lince-kvs:latest gcr.io/lince-work/lince-kvs:0.0.6
+gcloud docker -- push gcr.io/lince-work/lince-kvs:0.0.6
+
 ###H2
 
 docker run --name lince-kvs \
