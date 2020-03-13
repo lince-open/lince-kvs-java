@@ -8,6 +8,9 @@ spring:
   profiles:
     include: management
 
+  favicon:
+    enabled: false
+
   jackson:
     default-property-inclusion: non_null
     time-zone: America/Sao_Paulo
