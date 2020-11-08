@@ -5,7 +5,7 @@
 
     <groupId>lince-open</groupId>
     <artifactId>lince-kvs</artifactId>
-    <version>0.0.7</version>
+    <version>0.0.8</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -16,7 +16,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <sonar.tests>src/test/groovy,src/test/java</sonar.tests>
         <sonar.projectKey>lince-open_lince-kvs-java</sonar.projectKey>
         <sonar.organization>lince-open</sonar.organization>
@@ -181,7 +181,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.2</version>
+                <version>0.8.6</version>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -239,7 +239,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.3.6</version>
+                <version>1.4.13</version>
                 <configuration>
                     <repository>${project.groupId}/${project.artifactId}</repository>
                     <buildArgs>
