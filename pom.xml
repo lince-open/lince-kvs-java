@@ -16,7 +16,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>14</java.version>
         <sonar.tests>src/test/groovy,src/test/java</sonar.tests>
         <sonar.projectKey>lince-open_lince-kvs-java</sonar.projectKey>
         <sonar.organization>lince-open</sonar.organization>
