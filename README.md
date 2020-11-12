@@ -31,7 +31,7 @@ docker push linceopen/lince-kvs:latest
 
 ###GCLOUD
 
-docker tag lince-open/lince-kvs:latest gcr.io/lince-work/lince-kvs:0.0.6
+docker tag linceopen/lince-kvs:latest gcr.io/lince-work/lince-kvs:0.0.6
 
 gcloud docker -- push gcr.io/lince-work/lince-kvs:0.0.6
 
@@ -44,7 +44,7 @@ docker run --name lince-kvs \
 -e LINCE_KVS_DATASOURCE_PASS='lincepass' \
 -e LINCE_LOG_LEVEL='WARN' \
 -p 50001:8080 \
--t lince-open/lince-kvs:latest
+-t linceopen/lince-kvs:latest
 
 ###Mysql
 
