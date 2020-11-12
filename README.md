@@ -23,11 +23,9 @@ https://hub.docker.com/repository/docker/linceopen/lince-kvs
 
 mvn clean package dockerfile:build
 
-docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:0.0.9
+docker tag linceopen/lince-kvs:latest linceopen/lince-kvs:0.0.9
 
 docker push linceopen/lince-kvs:0.0.9
-
-docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:latest
 
 docker push linceopen/lince-kvs:latest
 
