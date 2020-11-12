@@ -63,7 +63,7 @@ docker run --name lince-kvs \
 -e LINCE_KVS_DATASOURCE_DIALECT='org.hibernate.dialect.MySQL5InnoDBDialect' \
 -e LINCE_LOG_LEVEL='WARN' \
 -p 50001:8080 \
--t lince-open/lince-kvs:latest
+-t linceopen/lince-kvs:latest
 
 
 ####Script
