@@ -23,17 +23,15 @@ https://hub.docker.com/repository/docker/linceopen/lince-kvs
 
 mvn clean package dockerfile:build
 
-docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:0.0.9
+docker tag linceopen/lince-kvs:latest linceopen/lince-kvs:0.0.9
 
 docker push linceopen/lince-kvs:0.0.9
-
-docker tag lince-open/lince-kvs:latest linceopen/lince-kvs:latest
 
 docker push linceopen/lince-kvs:latest
 
 ###GCLOUD
 
-docker tag lince-open/lince-kvs:latest gcr.io/lince-work/lince-kvs:0.0.6
+docker tag linceopen/lince-kvs:latest gcr.io/lince-work/lince-kvs:0.0.6
 
 gcloud docker -- push gcr.io/lince-work/lince-kvs:0.0.6
 
@@ -46,7 +44,7 @@ docker run --name lince-kvs \
 -e LINCE_KVS_DATASOURCE_PASS='lincepass' \
 -e LINCE_LOG_LEVEL='WARN' \
 -p 50001:8080 \
--t lince-open/lince-kvs:latest
+-t linceopen/lince-kvs:latest
 
 ###Mysql
 
@@ -63,7 +61,7 @@ docker run --name lince-kvs \
 -e LINCE_KVS_DATASOURCE_DIALECT='org.hibernate.dialect.MySQL5InnoDBDialect' \
 -e LINCE_LOG_LEVEL='WARN' \
 -p 50001:8080 \
--t lince-open/lince-kvs:latest
+-t linceopen/lince-kvs:latest
 
 
 ####Script
